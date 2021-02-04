@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ctycho <ctycho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/08 20:39:21 by ctycho            #+#    #+#             */
-/*   Updated: 2021/01/31 19:31:55 by ctycho           ###   ########.fr       */
+/*   Created: 2021/01/30 19:12:33 by ctycho            #+#    #+#             */
+/*   Updated: 2021/02/04 15:14:41 by ctycho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,21 +115,11 @@ static void				ft_init(char *cub, int bmp)
 
 int						main(int argc, char **argv)
 {
-	// if (argc == 3)
-	// 	ft_init(argv[1], 1);
-	 if (argc == 2)
+	if (argc == 3)
+		ft_init(argv[1], 1);
+	else if (argc == 2)
 		ft_init(argv[1], 0);
+	else
+		write(2, "Error:\nInvalid arguements", 25);
 	return (0);
 }
-
-// gcc -framework OpenGL -framework AppKit libft/l
-// ibft.a get_next_line/g_n_l.a minilibx_opengl/libmlx.a c
-// ub3d.c parsing.c key.c tex_raycast.c sprite_raycast.c c
-// ub3d_utils.c all_events.c pars_map.c cub3d_tools.c pars
-// _map_2.c plr_spr.c
-
-// gcc -framework OpenGL -framework AppKit libft/l
-// ibft.a get_next_line/g_n_l.a minilibx_opengl/libmlx.a c
-// ub3d.c parsing.c key.c ft_texture.c ft_sprite.c ft_spri
-// te_1.c cub3d_utils.c all_events.c pars_map.c cub3d_tool
-// s.c pars_map_2.c plr_spr.c ft_bitmap.c

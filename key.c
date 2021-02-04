@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ctycho <ctycho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/16 11:47:22 by ctycho            #+#    #+#             */
-/*   Updated: 2021/01/30 23:52:36 by ctycho           ###   ########.fr       */
+/*   Created: 2021/01/30 19:12:33 by ctycho            #+#    #+#             */
+/*   Updated: 2021/01/30 23:51:07 by ctycho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,8 @@ int			key_release(int key, t_all *s)
 
 int			key_exit(t_all *s)
 {
+	free(s->map.world);
+	free(s->point.buf);
+	free(s->spr);
 	exit(0);
 }

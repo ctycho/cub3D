@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ctycho <ctycho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/15 15:04:23 by ctycho            #+#    #+#             */
-/*   Updated: 2021/01/31 21:17:34 by ctycho           ###   ########.fr       */
+/*   Created: 2021/02/02 21:46:37 by ctycho            #+#    #+#             */
+/*   Updated: 2021/02/02 21:46:46 by ctycho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,11 +126,12 @@ int					**ft_read_map(t_all *s, char *argv)
 	while (ret == 1)
 	{
 		ret = get_next_line(fd, &line);
-		// printf("l|%s|\n", line);
 		check_line_1(s, line);
 		free(line);
 	}
 	close(fd);
+	if (!(s->point.buf = (double *)malloc(sizeof(double) * s->win.x)))
+		ft_error(-9);
 	ft_map(s);
 	return (0);
 }

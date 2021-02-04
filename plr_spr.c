@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ctycho <ctycho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/30 07:40:53 by ctycho            #+#    #+#             */
-/*   Updated: 2021/01/31 20:36:24 by ctycho           ###   ########.fr       */
+/*   Created: 2021/01/30 19:12:33 by ctycho            #+#    #+#             */
+/*   Updated: 2021/01/30 23:51:07 by ctycho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ static void			put_direction(t_all *s)
 void				draw_player(t_all *s)
 {
 	Y = -1;
-
 	while (MAP[++Y])
 	{
 		X = -1;

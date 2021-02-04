@@ -5,74 +5,89 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ctycho <ctycho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/23 18:29:57 by ctycho            #+#    #+#             */
-/*   Updated: 2021/01/31 22:18:30 by ctycho           ###   ########.fr       */
+/*   Created: 2021/01/30 19:12:33 by ctycho            #+#    #+#             */
+/*   Updated: 2021/01/30 23:51:07 by ctycho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+static void		check_rabish(t_all *s)
+{
+	Y = -1;
+	while (MAP[++Y])
+	{
+		X = -1;
+		while (MAP[Y][++X])
+		{
+			if (MAP[Y][X] != ' ' && MAP[Y][X] != '1' && MAP[Y][X] != '2' && \
+				MAP[Y][X] != '3' && MAP[Y][X] != 'N' && MAP[Y][X] != 'S' && \
+				MAP[Y][X] != 'W' && MAP[Y][X] != 'E' && MAP[Y][X] != '0')
+				ft_error(-18);
+		}
+	}
+}
+
 static void		check_around(t_all *s)
 {
-	int		i = 0;
-	int 	j = s->flag.count_line - 1;
+	int		i;
+	int		j;
 
-	while (MAP[0][i])
+	i = -1;
+	j = s->flag.count_line - 1;
+	while (MAP[0][++i])
 	{
 		if (MAP[0][i] != ' ' && MAP[0][i] != '1')
 			ft_error(-16);
-		i++;
 	}
-	i = 0;
-	while (MAP[i])
+	i = -1;
+	while (MAP[++i])
 	{
 		if (MAP[i][0] != ' ' && MAP[i][0] != '1')
 			ft_error(-16);
-		i++;
 	}
-	i = 0;
-	while (MAP[j][i])
+	i = -1;
+	while (MAP[j][++i])
 	{
 		if (MAP[j][i] != ' ' && MAP[j][i] != '1')
 			ft_error(-16);
-		i++;
 	}
 }
 
 static void		check_inside(t_all *s)
 {
-	int		i = 0;
-	int 	j = 0;
-
-	while (MAP[i])
+	Y = 0;
+	while (MAP[Y])
 	{
-		j = 0;
-		while (MAP[i][j])
+		X = 0;
+		while (MAP[Y][X])
 		{
-			if (MAP[i][j] == '0' || MAP[i][j] == 'N' || MAP[i][j] == 'W' || MAP[i][j] == 'S' || MAP[i][j] == 'E' || MAP[i][j] == '2' || MAP[i][j] == '3')
+			if (MAP[Y][X] == '0' || MAP[Y][X] == 'N' || MAP[Y][X] == 'W' \
+				|| MAP[Y][X] == 'S' || MAP[Y][X] == 'E' || \
+				MAP[Y][X] == '2' || MAP[Y][X] == '3')
 			{
-				if (MAP[i - 1][j - 1] == '\0' || MAP[i - 1][j - 1] == ' ' || \
-					MAP[i - 1][j] == '\0' || MAP[i - 1][j] == ' ' || \
-					MAP[i - 1][j + 1] == '\0' || MAP[i - 1][j + 1] == ' ' || \
-					MAP[i][j - 1] == '\0' || MAP[i][j - 1] == ' ' || \
-					MAP[i][j + 1] == '\0' || MAP[i][j + 1] == ' ' || \
-					MAP[i + 1][j - 1] == '\0' || MAP[i + 1][j -1] == ' ' || \
-					MAP[i + 1][j] == '\0' || MAP[i + 1][j] == ' ' || \
-					MAP[i + 1][j + 1] == '\0' || MAP[i + 1][j + 1] == ' ')
+				if (MAP[Y - 1][X - 1] == '\0' || MAP[Y - 1][X - 1] == ' ' || \
+					MAP[Y - 1][X] == '\0' || MAP[Y - 1][X] == ' ' || \
+					MAP[Y - 1][X + 1] == '\0' || MAP[Y - 1][X + 1] == ' ' || \
+					MAP[Y][X - 1] == '\0' || MAP[Y][X - 1] == ' ' || \
+					MAP[Y][X + 1] == '\0' || MAP[Y][X + 1] == ' ' || \
+					MAP[Y + 1][X - 1] == '\0' || MAP[Y + 1][X - 1] == ' ' || \
+					MAP[Y + 1][X] == '\0' || MAP[Y + 1][X] == ' ' || \
+					MAP[Y + 1][X + 1] == '\0' || MAP[Y + 1][X + 1] == ' ')
 					ft_error(-15);
 			}
-			j++;
+			X++;
 		}
-		i++;
+		Y++;
 	}
 }
 
 static void		check_length(t_all *s, int m)
 {
-	int		i = 0;
-	int		j = 0;
-	Y = 0;
+	int		i;
+	int		j;
 
+	Y = 0;
 	while (Y < m - 1)
 	{
 		X = 0;
@@ -112,13 +127,12 @@ void			ft_map(t_all *s)
 		tmp = tmp->next;
 		free(tmp1);
 	}
+	check_rabish(s);
 	draw_player(s);
 	check_around(s);
 	check_length(s, m);
 	check_inside(s);
-	if (!(s->point.buf = (double *)malloc(sizeof(double) * s->win.x)))
-		return ;
 	if (!(s->spr = (t_spr *)malloc(sizeof(t_spr) * s->point.count)))
-		return ;	
+		ft_error(-9);
 	draw_sprite(s);
 }

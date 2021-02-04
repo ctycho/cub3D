@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ctycho <ctycho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/31 03:33:40 by ctycho            #+#    #+#             */
-/*   Updated: 2021/01/31 03:40:38 by ctycho           ###   ########.fr       */
+/*   Created: 2021/01/30 19:12:33 by ctycho            #+#    #+#             */
+/*   Updated: 2021/01/30 23:51:07 by ctycho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void			ft_sprite2(t_all *s, int i)
+static void			ft_sprite2(t_all *s)
 {
 	s->point.spr_h = abs((int)(s->win.y / s->point.tform_y));
 	s->point.start_y = (s->win.y / 2) - (s->point.spr_h / 2);
@@ -49,5 +49,5 @@ void				ft_sprite1(t_all *s, int i)
 		s->dir.plane_x * s->point.spr_y);
 	s->point.spr_screen_x = (int)((s->win.x / 2) * \
 		(1 + s->point.tform_x / s->point.tform_y));
-	ft_sprite2(s, i);
+	ft_sprite2(s);
 }

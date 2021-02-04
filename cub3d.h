@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ctycho <ctycho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/15 14:59:10 by ctycho            #+#    #+#             */
-/*   Updated: 2021/01/31 21:56:00 by ctycho           ###   ########.fr       */
+/*   Created: 2021/01/30 19:12:33 by ctycho            #+#    #+#             */
+/*   Updated: 2021/01/30 23:51:07 by ctycho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
+# include <string.h>
 
 # define MAP s->map.world
 # define X s->map.x
@@ -46,8 +47,8 @@ typedef struct		s_mlx
 typedef struct		s_win
 {
 	void			*ptr;
-	unsigned long	x;
-	unsigned long	y;
+	int				x;
+	int				y;
 }					t_win;
 
 typedef struct		s_img
@@ -57,6 +58,7 @@ typedef struct		s_img
 	int				bpp;
 	int				line_length;
 	int				endian;
+	unsigned int	*src;
 }					t_img;
 
 typedef struct		s_color
@@ -126,6 +128,12 @@ typedef struct		s_ray
 	double			perp_wall_dist;
 	int				step_x;
 	int				step_y;
+	int				line_h;
+	int				draw_start;
+	int				draw_end;
+	double			step;
+	double			tex_pos;
+	int				tex_y;
 }					t_ray;
 
 typedef struct		s_hit
@@ -151,6 +159,8 @@ typedef struct		s_tex
 	int				flag_1;
 	int				tex_x;
 	int				tex_y;
+	int				line_h;
+	double			wall_x;
 }					t_tex;
 
 typedef struct		s_comp
@@ -164,7 +174,6 @@ typedef struct		s_comp
 	t_tex			col_c;
 	t_tex			col_f;
 	t_tex			resol;
-	t_tex			texture;
 }					t_comp;
 
 typedef struct		s_point
@@ -205,6 +214,7 @@ typedef struct		s_all
 	t_dir			dir;
 	t_ray			ray;
 	t_hit			hit;
+	t_tex			tex;
 	t_point			point;
 	t_spr			*spr;
 	t_spr			*spr1;
@@ -221,7 +231,8 @@ int					key_release(int key, t_all *s);
 int					all_events(t_all *s);
 int					**ft_read_map(t_all *s, char *argv);
 void				ft_map(t_all *s);
-void				ft_raycasting(t_all *s);
+void				ft_wall(t_all *s);
+void				wall_height(t_all *s, int x, int y);
 int					key_hook(int keycode);
 int					key_press(int key, t_all *s);
 int					key_release(int key, t_all *s);
@@ -236,12 +247,11 @@ void				count_lines(t_all *s, char *line);
 int					skip_space(char *line, int *i);
 int					ft_color(t_all *s, t_tex *color, char *line, int *i);
 int					ft_namecheck(char *line, char *ext);
-int					check_line_5(t_all *s, char *line);
-int					check_line_6(t_all *s, char *line);
-int					check_plr(t_all *s, char *line, int i);
 void				ft_bitmap(t_all *s);
 void				ft_texture_1(char *line, int *i);
-// void				ft_sprite1(t_all *s, int i);
+void				ft_sprite1(t_all *s, int i);
 void				draw_player(t_all *s);
+int					ft_saveckeck(char *line, char *arg);
+int					ft_intlen(int line);
 
 #endif

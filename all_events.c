@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ctycho <ctycho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/21 13:31:55 by ctycho            #+#    #+#             */
-/*   Updated: 2021/01/31 00:55:13 by ctycho           ###   ########.fr       */
+/*   Created: 2021/01/30 19:12:33 by ctycho            #+#    #+#             */
+/*   Updated: 2021/01/30 23:51:07 by ctycho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int				all_events(t_all *s)
 		ft_rotate(s, 1);
 	if (s->flag.turn_r == 1)
 		ft_rotate(s, -1);
-	ft_raycasting(s);
+	ft_wall(s);
 	ft_sprite(s);
 	if (s->flag.save == 1)
 		ft_bitmap(s);

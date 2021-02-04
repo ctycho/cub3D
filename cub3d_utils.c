@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ctycho <ctycho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/16 11:51:53 by ctycho            #+#    #+#             */
-/*   Updated: 2021/01/31 21:33:17 by ctycho           ###   ########.fr       */
+/*   Created: 2021/01/30 19:12:33 by ctycho            #+#    #+#             */
+/*   Updated: 2021/01/30 23:51:07 by ctycho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,11 @@ void			my_mlx_pixel_put(t_all *s, int x, int y, int color)
 void			count_lines(t_all *s, char *line)
 {
 	char		*tmp;
-	int			m;
 
 	tmp = ft_strdup(line);
 	s->flag.skip = 0;
 	ft_lstadd_back(&s->head, ft_lstnew(tmp));
 	s->flag.count_line++;
-	// printf("|%d|\n", s->flag.count_line);
 }
 
 static void		ft_color_1(char *line, int *i)
