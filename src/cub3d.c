@@ -6,7 +6,7 @@
 /*   By: ctycho <ctycho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 19:12:33 by ctycho            #+#    #+#             */
-/*   Updated: 2021/02/04 15:14:41 by ctycho           ###   ########.fr       */
+/*   Updated: 2021/02/04 20:15:32 by ctycho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,14 +110,16 @@ static void				ft_init(char *cub, int bmp)
 	s.map.y = 0;
 	s.map.line_cur = 0;
 	s.map.line_next = 0;
+	s.head = NULL;
 	ft_declare(s, cub, bmp);
 }
 
 int						main(int argc, char **argv)
 {
-	if (argc == 3)
+	if (argc == 3 && ft_namecheck(argv[1], "cub") && \
+		check_save("--save", argv[2]))
 		ft_init(argv[1], 1);
-	else if (argc == 2)
+	else if (argc == 2 && ft_namecheck(argv[1], "cub"))
 		ft_init(argv[1], 0);
 	else
 		write(2, "Error:\nInvalid arguements", 25);

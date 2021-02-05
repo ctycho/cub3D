@@ -6,7 +6,7 @@
 /*   By: ctycho <ctycho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 19:12:33 by ctycho            #+#    #+#             */
-/*   Updated: 2021/01/30 23:51:07 by ctycho           ###   ########.fr       */
+/*   Updated: 2021/02/04 21:33:13 by ctycho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,5 +253,6 @@ void				ft_sprite1(t_all *s, int i);
 void				draw_player(t_all *s);
 int					ft_saveckeck(char *line, char *arg);
 int					ft_intlen(int line);
+int					check_save(char *s, char *s1);
 
 #endif

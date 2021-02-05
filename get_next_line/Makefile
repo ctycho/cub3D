@@ -6,11 +6,11 @@
 #    By: ctycho <ctycho@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/26 13:50:00 by ctycho            #+#    #+#              #
-#    Updated: 2020/12/26 14:09:25 by ctycho           ###   ########.fr        #
+#    Updated: 2021/02/04 22:13:12 by ctycho           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	g_n_l.a
+NAME	=	gnl.a
 
 #flags------------------------------------------------------------------------
 
@@ -50,9 +50,11 @@ ${NAME}: ${OBJS} ${INC}
 
 clean:		
 	@rm -rf ${OBJS}
+	@echo "${LGREEN}Everything is cleaned succesfully"
 
 fclean:		clean
 	@rm -rf ${NAME}
+	@echo "${LGREEN}Everything is cleaned succesfully"
 
 re:		fclean all
 	@echo "${LBLUE}Library successfuly rebuilt"

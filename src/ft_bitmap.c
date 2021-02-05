@@ -6,7 +6,7 @@
 /*   By: ctycho <ctycho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 19:12:33 by ctycho            #+#    #+#             */
-/*   Updated: 2021/01/30 23:51:07 by ctycho           ###   ########.fr       */
+/*   Updated: 2021/02/05 10:29:11 by ctycho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void			transfer(int n, unsigned char *src)
 	src[3] = (unsigned char)(n >> 24);
 }
 
-static	void		bmp_header(t_all *all, int file_size, int fd)
+static	void		bmp_header(t_all *s, int file_size, int fd)
 {
 	unsigned char btr[54];
 
@@ -30,8 +30,8 @@ static	void		bmp_header(t_all *all, int file_size, int fd)
 	transfer(file_size, btr + 2);
 	btr[10] = (unsigned char)(54);
 	btr[14] = (unsigned char)(40);
-	transfer(all->win.x, btr + 18);
-	transfer(all->win.y, btr + 22);
+	transfer(s->win.x, btr + 18);
+	transfer(s->win.y, btr + 22);
 	btr[26] = (unsigned char)(1);
 	btr[28] = (unsigned char)(24);
 	write(fd, btr, 54);
@@ -41,7 +41,7 @@ static	void		get_pxl(t_all *s, int fd)
 {
 	int	i;
 	int	j;
-	int	cvet;
+	int	color;
 
 	i = s->win.y - 1;
 	while (i >= 0)
@@ -49,9 +49,9 @@ static	void		get_pxl(t_all *s, int fd)
 		j = -1;
 		while (++j < s->win.x)
 		{
-			cvet = *(int*)(s->img.addr +
+			color = *(int*)(s->img.addr +
 			(i * s->img.line_length + j * (s->img.bpp / 8)));
-			write(fd, &cvet, 3);
+			write(fd, &color, 3);
 		}
 		i--;
 	}

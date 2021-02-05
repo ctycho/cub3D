@@ -6,21 +6,11 @@
 /*   By: ctycho <ctycho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 19:12:33 by ctycho            #+#    #+#             */
-/*   Updated: 2021/01/30 23:51:07 by ctycho           ###   ########.fr       */
+/*   Updated: 2021/02/04 19:57:53 by ctycho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void				ft_texture_1(char *line, int *i)
-{
-	while (line[*i] != '\0')
-	{
-		if (line[*i] != ' ')
-			ft_error(-6);
-		(*i)++;
-	}
-}
 
 static void			put_direction_1(t_all *s)
 {
